@@ -1,6 +1,6 @@
 # forecasting daily closing values
 
-[Gardner-Webb University](https://gardner-webb.edu/) undergraduate research submission to the [North Carolina Journal of Mathematics and Statistics](https://libjournal.uncg.edu/ncjms).
+Undergraduate research submission to the [North Carolina Journal of Mathematics and Statistics](https://libjournal.uncg.edu/ncjms).
 
 ## abstract
 
@@ -19,5 +19,8 @@ sudo apt install texlive-full
 ## usage
 
 ```shell
-pdflatex main.tex
+pdflatex main
+bibtex main
+pdflatex main
+pdflatex main
 ```
