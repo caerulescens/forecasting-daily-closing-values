@@ -1,0 +1,77 @@
+Many questions arise when forecasting short-term stock returns like
+\textit{is the stock market random or predictable?}
+\textit{Which neural network weight optimization method creates better forecasts?}
+These questions are answered through the perspective of other researchers.
+
+When discussing financial forecasting, there are three beliefs which researchers commonly hold towards the methods and results of for profit market analysis.
+One school of thought asserts that no one can achieve better than average accuracy in predicting the direction or level of change in the stock market.
+\citet{Fama:1970} created the Efficient Market Hypothesis to reflect this idea, and \citet{Jensen:1978} believed that there was concrete proof that the Efficient Market Hypothesis held.
+The Efficient Market Hypothesis states that all markets are extremely efficient, and all the information of a stock is already reflected in its price; it asserts that signal analysis and model building provide no advantage in a stock market.
+This belief was widely debated within the financial community in the 1970s, but academic articles have developed results contradicting this theory.
+The Efficient Market Hypothesis is commonly used to argue that financial markets follow a random walk model.
+
+\citet{Lo:1988} tested the Random Walk Hypothesis for weekly stock market returns by comparing variance estimators derived from data sampled at different frequencies, and they concluded that the random walk model was strongly rejected for the entire sample period.
+The hypothesis was also rejected for all sub-periods for a variety of aggregate return indexes and size-sorted portfolios.
+Similarly, \citet{Lendasse:2000} had the goal of breaking the random walk hypothesis with non-linear statistical methods, and they were able to create an Artificial Neural Network model which found non-linear relationships within the stock data; they asserted that the data has more correlation than a random walk process.
+\citet{Hassan:2007} used Hybrid Hidden Markov, Artificial Neural Network, and Genetic Algorithm models with the goal of forecasting three major stocks; their results indicated that the next day’s closing price could be predicted within 2\% of the actual value of the stock.
+Post Fama and Jensen literature provides evidence against the Efficient Market Hypothesis when machine learning methods are used for financial forecasting.
+
+The second type encourages fundamental macroeconomic analysis of financial environments and has the goal of finding correlation between exogenous variables.
+It is not the purpose of this paper to address the macroeconomic methods that may be used to forecast financial markets.
+This type of analysis is synonymous with forecasting by humans, but humans can be bias in their predictions.
+\citet{OConnor:1997} had humans forecast artificially created time series to discover if the direction of trend effects forecasting accuracy.
+They determined that ``People were found to be surprisingly inaccurate,'' and that people had significant difficulties in assessing downward-sloping series; the study showed that the direction of a time series' slope makes a difference in the accuracy of the forecast.
+\citet{Hoaglin:2006} found that people are able to draw best fit lines which are significantly close to a least-squares regression method, which says that people can assess trends very well.
+In contrast, \citet{Collyer:1990} found that people tended to merely bisect scatter plots.
+
+The tertiary view focuses on applying model building strategies derived from rigorously proven mathematics with the intention of forecasting financial returns.
+Time series analysis methods like ARIMA and GARCH along with machine learning concepts like Support Vector Machines, Artificial Neural Networks, Genetic Algorithms, Fuzzy Logic, and more all fall into this category.
+The results from numerous studies stemming from this school of thought are evidence against the Efficient Market Hypothesis.
+
+Concerning which models result in higher success, numerous articles assert that machine learning models consistently outperform time series analysis models.
+\citet{Hamzacebi:2009} compared direct and iterative neural network methods against multiple other methods, including ARIMA, and they asserted that ARIMA was the worst performing of the seven methods they compared while the Artificial Neural Network performed the best.
+\citet{Yumlu:2005} used four different models including EGARCH and a multi-layered neural network model to predict the ISE-XU100 daily values; Over the four-year testing set, EGARCH performed the worst.
+\citet{Hassan:2007} compared a hybrid Neural Network model against ARIMA when forecasting Apple, IBM, and Dell stocks; they only tested over five weeks of data, but the neural network model performed better than an ARIMA model.
+When Artificial Neural Networks and time series analysis methods were combined into hybrid models as in \citet{Hyup:2007} paper, the pure neural network model outperformed the ARCH optimized neural network models.
+Academic literature expresses artificial neural networks as a proven method for regression.
+
+Artificial Neural Networks are trained with the specific goal of level estimation or classification.
+Some place importance on the direction of change, others on the magnitude of change, and the rest on both.
+The question naturally arises, \textit{which method is more accurate and does any success translate to profit?}
+\citet{Leung:2000} compared multiple models and developed threshold trading rules with the goal of profiting.
+Their experiment suggested that the classification models outperform the level estimation models in terms of predicting the direction of the stock market movement and maximizing returns from investment trading.
+\citet{Kara:2011} developed two efficient models for classification and had similar results.
+
+Researchers are able to forecast the sign of change for daily closing prices higher than the Efficient Market Hypothesis' implied 50\% accuracy.
+\citet{Kara:2011} created Support Vector Machine and Artificial Neural Network models that achieved classification success on the ISE National 100 Index of 71.52\% and 75.74\%, respectively.
+\citet{Diler:2003} used technical indicators to train his Back-Propagation Artificial Neural Networks, and his results showed that the direction of the ISE-100 Index could be forecasted with a success rate of 60.81\%.
+\citet{Fernandez:2000} used neural networks to determine the profitability of trading in security markets.
+Their results indicated that the neural network based trading strategies they developed, when applied to the General Index of the Madrid stock exchange, are always superior to a buy-and-hold strategy for bear and stable markets; this was in the absence of trading costs.
+
+When used correctly, Artificial Neural Networks are proficient at classification and level estimation for many different domains, but they have disadvantages as well.
+\citet{Guresen:2008} said that Artificial Neural Networks are popular for complex financial markets, but they claim that noise caused by changes in market conditions makes it hard to reflect the market variables directly into the models without any assumptions.
+Similarly, \citet{Kim:2003} asserted that ``ANN often exhibits inconsistent and unpredictable performance on noisy data.''
+\citet{Ticknor:2013} says that one drawback of using standard Back-Propagation neural networks is the potential for over fitting the training data set, which results in reduced accuracy on unknown test sets.
+
+A negative aspect of the popular Back-Propagation method for training neural networks is the amount of parameters which must be optimized for gradient descent to converge to a local or global minimum solution.
+For Back-Propagation, this includes the learning rate, hidden-layer nodes, momentum, weight optimization method, and any additional parameters that method uses.
+An alternative method called Extreme Learning Machines was developed in 2004 by \citet{Guang:2004}.
+\citet{Li:2016} compared Extreme Learning Machines to Back-Propagation trained neural networks.
+In their study, the parameter of hidden-layer nodes should be greater than or equal to the number of input nodes, which has 1,011 features.
+They found that after several trials, it was impossible for their servers to support that high of a number of nodes since Back-Propagation training has high memory requirements.
+The authors proposed an Extreme Learning Machine Model for forecasting stock returns instead of the traditional Back-Propagation neural network.
+
+The subject of investigation within this paper is whether Extreme Learning Machines offer a significant advantage over the traditional method of forecasting with Back-Propagation.
+\citet{Milacic:2017} purposed their research towards comparing Extreme Learning Machines and Back-Propagation neural networks for forecasting gross domestic product growth rate; the authors determined that Extreme Learning Machines had lower root-mean-squared error, higher correlation between the actual and forecasted series, and that ``The extreme learning machine algorithm can be effectively utilized in GDP applications and particularly in the GDP estimations.''
+
+Extreme Learning Machines require fewer computations and train faster than Back-Propagation neural networks. \citet{Li:2016} compared Hybrid Radial Basis Function Extreme Learning Machines and Back-Propagation Neural Networks with real-time news article labeling and an iterative method for forecasting in real-time.
+Their results showed that the ``RBF-ELM achieved high prediction accuracy and faster prediction speed when compared to BP-NN.'' Their article represents a new direction of machine learning and financial forecasting since news articles are being exploited for high-frequency trading.
+Algorithms for real-time incremental learning, error reduced model selection, and online learning have been rigorously proven for Extreme Learning Machines by \citet{Guorui:2009} and \citet{Liang:2006}.
+The potential for improving the training and testing time of big data problems with Extreme Learning Machines should be explored.
+
+Different beliefs regarding forecasting, methods of forecasting, and the results from academic studies of financial markets have been presented within this section.
+The Efficient Market and Random Walk Hypotheses are rejected in favor of the tertiary belief that machine learning models can detect nonlinear patterns in a stock market time series.
+The experiment proposed within chapter 4 models the cycle of forecasting nonlinear patterns of daily closing prices.
+The theory of both optimization algorithms used within the experiment are presented in the following section.
+
+% Weight Optimization
