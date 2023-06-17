@@ -2,6 +2,12 @@
 
 Undergraduate research submission to the [North Carolina Journal of Mathematics and Statistics](https://libjournal.uncg.edu/ncjms).
 
+<object data="https://github.com/caerulescens/forecasting-daily-closing-values/blob/feature/project-baseline/main.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/caerulescens/forecasting-daily-closing-values/blob/feature/project-baseline/main.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/caerulescens/forecasting-daily-closing-values/blob/feature/project-baseline/main.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
 ## abstract
 
 Over the past decades, machine learning has become an essential area of research with relevant applications in classification and regression. 
