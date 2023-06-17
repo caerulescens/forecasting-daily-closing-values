@@ -1,0 +1,54 @@
+\begin{table}
+\caption{Results: Back-Propagation with Stochastic Gradient Descent}
+\resizebox{\textwidth}{!}{
+\label{tab:bp_results}
+	\begin{tabular}{llllll}
+	\toprule
+	Stock              & Hidden Nodes & Training Time (sec) & Mean Squared Error & Hits/Misses = hit\% (type 1) & Hits/Misses = hit\% (type 2) \\\midrule
+	Apple Inc          & 40           & 17.7                & 4.47               & $283/214=56.9\%$       & $57/82=41.0\%$         \\
+	Walmart            & 40           & 23.6                & 0.339              & $349/148=70.2\%$       & $123/69=64.1\%$       \\
+	Bank of America    & 40           & 61.8                & 0.06               & $312/185=62.8\%$       & $91/78=53.8\%$         \\
+	Ford Motor Company & 40           & 35.3                & 0.036              & $324/173=65.2\%$       & $71/93=43.3\%$         \\
+	Coca-Cola          & 40           & 34.2                & 0.07               & $327/170=65.8\%$       & $82/83=49.7\%$        \\\midrule
+	Average            & 40           & 35.5                & 0.995               & $64.2\%$              & $50.4\%$               \\
+	\bottomrule
+	\end{tabular}}
+\end{table}
+
+\begin{table}
+\caption{Results: Extreme Learning Machine}
+\resizebox{\textwidth}{!}{%
+\label{tab:elm_results}
+	\begin{tabular}{llllll}
+	\toprule
+	Stock              & Hidden Nodes & Training Time (sec) & Mean Squared Error & Hits/Misses= hit\% (type 1) & Hits/Misses= hit\% (type 2) \\\midrule
+	Apple Inc          & 497          & 1.44                & 1.454              & 372/125=74.8\%              & 124/69=64.2\%               \\
+	Walmart            & 890          & 1.63                & 0.267              & 370/127=74.4\%              & 146/51=74.1\%               \\
+	Bank of America    & 440          & 1.5                 & 0.039              & 356/141=71.6\%              & 116/77=60.1\%               \\
+	Ford Motor Company & 276          & 1.38                & 0.027              & 366/131=73.6\%              & 128/58=68.8\%               \\
+	Coca-Cola          & 590          & 1.91                & 0.063              & 363/134=73.0\%              & 134/45=74.9\%               \\\midrule
+	Average            & 539          & 1.57                & 0.37               & 73.5\%                      & 68.4\%                      \\
+	\bottomrule
+	\end{tabular}}
+\end{table}
+
+The error measurements to quantify the results include the number of nodes, training time, mean-squared error, and a couple of hit or miss ratios.
+The number of nodes corresponds to the nodes within the single hidden layer.
+The training time is the amount of time the script took between beginning and ending the training phase.
+Mean-squared error is the average of squared deviation from the real value of the stock.
+For $N$ testing samples, real values $y$, and forecasted values $\hat{y}$, mean-squared error is expressed as
+
+\begin{equation}
+	MSE=\dfrac{1}{N}\sum_{i=1}^{N} (\hat{y_i} - y_i)^2\label{eq:equation11}
+\end{equation}
+
+While mean-squared error is useful for comparisons between different models, mean-squared error is not relevant for measuring classification successes.
+Two other hit or miss ratios were adopted for the purpose of better defining a successful prediction.
+For the first type, a hit signifies that the stock and prediction have the same sign of change between any two adjacent days.
+For the second type, a hit signifies the model predicting an inflection point correctly; given any adjacent three days, if the model predicted the sign of change correctly between days 1 and 2, the type 2 hit or miss ratio measures whether a model correctly forecasts the opposite sign change between days 2 and 3.
+Both hit or miss ratios were implemented because classification accuracy is necessary for profiting within a market.
+
+The results of training, validating, and testing each stock for Back-Propagation and Extreme Learning Machine models are provided within tables\ \ref{tab:bp_results} and\ \ref{tab:elm_results}, respectively.
+Each stock was trained, validated, and tested on only its own historical stock information.
+
+% Discussion

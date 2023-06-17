@@ -1,0 +1,130 @@
+The steps taken to create data sets, select models, and test models are described within this section.
+Both of the tested models have 25 input neurons, 1 output neuron, and a varying number of hidden neurons.
+The inputs into the models are 5 days of 5 values, which include the open high, low, close, and volume.
+The output neuron represents the next day's forecast.
+
+% Acquiring, Preprocessing, and Formatting Data
+\subsection{Acquiring, Preprocessing, and Formatting Data}\label{subsec:acquiring-preprocessing-and-formatting-data}
+
+\begin{table}[!htbp]
+\caption{Ranges for Training, Validation, and Testing Sets}
+\label{tab:samples_dates}
+	\begin{tabular}{llll}\toprule
+	Set        & Number of Samples     & Start Date             & End Date  \\\midrule
+	Training   & 6000--12000 (varies)  & Earliest Day Available & 2/14/2013 \\
+	Validation & 497                   & 2/15/2013              & 2/14/2015 \\
+	Testing    & 497                   & 2/15/2015              & 2/13/2017 \\\bottomrule
+	\end{tabular}
+\end{table}
+
+Historical stock data was downloaded from \textit{finance.yahoo.com} in the form of \textit{.csv} files.
+The \textit{.csv} file's date range can be specified before downloading, and the file contains the date, open, high, low, close, volume, and adjusted close columns.
+Before training, the \textit{.csv} columns are extracted, preprocessed, and organized into sets.
+To receive meaningful results, these sets for training, validation, and testing must be temporally independent.
+The training set represents all available data online from the start of the stock to 2/14/2013.
+The validation set was created from the next two years and is used for model selection.
+Finally, the test set is taken to be the last two years available.
+The specific dates and sample sizes are detailed in table~\ref{tab:samples_dates}.
+
+Before the five lists are transformed into a set, each list was preprocessed with linearly scaling to the range $x \in [-1,1]$.
+Scaling the inputs helps the network to learn features equally and provides faster convergence of the Back-Propagation algorithm.
+Empirically, scaling the features results in more accurate forecasts because the neural network tends to be less sensitive to sharp changes by reducing the magnitude of over or under forecasting.
+
+Since the training and validation sets are assumed to be previously known data in relation to the creation of the model, the training set is linearly scaled with the min and max ranging over the entire set.
+This is not applicable to the testing set because using a min or max over the entire testing set implies knowing the future.
+The min and max of the training set was used to linearly scale the testing inputs.
+The forecast from the neural network is recovered by applying reverse linear scaling with the min and max of the training set.
+Let $x$ represent one of the five different inputs into the model, and let $x_s$ be the scaled value, then the equation is
+
+\begin{equation}
+	x_s = \dfrac{x-min(x)}{max(x)-min(x)}\label{eq:equation8}
+\end{equation}
+
+Within Python, the open, high, low, close, and volume were parsed into their own arrays.
+The market information was preprocessed and iteratively appended to form lists of individual training, validation, or testing samples.
+The training, validation, and testing sets follow a two dimensional list with the first dimension representing the whole structure and the second dimension representing the specific sample.
+If $m$ represents a training or testing day after the market closed, then an input into each model is expressed as
+
+\begin{equation}
+	x_{s_i} =
+	\begin{bmatrix}
+		o_{m-4} & h_{m-4} & l_{m-4} & \dots & v_m & c_m
+	\end{bmatrix}\label{eq:equation9}
+\end{equation}
+
+and the target forecast is
+
+\begin{equation}
+	t_{s_i} =
+	\begin{bmatrix}
+		c_{m+1}
+	\end{bmatrix}\label{eq:equation10}
+\end{equation}
+
+Inputs of the Artificial Neural Network are modeled as sequential previous days, and target values are the samples relative future closing prices.
+For example, if the inputs to the neural network are the five pieces of market information (open, high, low, close, and volume) from days 1, 2, 3, 4, and 5, then the neural network is taught day 6.
+The networks' weights are modified to learn the transformation between model inputs and the next day closing prices.
+
+% Software
+\subsection{Software}\label{subsec:software}
+All the code for forecasting daily closing prices was written in Python including scripts for generating sets and stock testing scripts.
+Both models used the same training, validation, and testing sets saved in the \textit{.hdf5} format.
+
+There are efficient implementations of the Extreme Learning Machine models and Back-Propagation algorithms within multiple different languages.
+The first package is called \textit{hpelm} which stands for High-Performance Extreme Learning Machine, and the authors modeled the package after the description of Extreme Learning Machines.
+Within \textit{hpelm}, there is support for graphics card accelerated training, iterative validation, multiple transfer functions, batch processing, and file operations, which is described within the author's academic paper~\citep{Akusok:2015}.
+Overall, the package provides a complete tool set for neural network regression.
+The package used for Back-Propagated learning is called MLP-Regressor and is a subset of a family of machine learning packages from \textit{scikit-learn}.
+There is support for multiple different optimization methods including the method used for the results in section 5, stochastic gradient descent.
+
+% Training, Validation, and Testing
+\subsection{Training, Validation, and Testing}\label{subsec:training-validation-and-testing}
+The training process uses the methods of \textit{hpelm} and \textit{scikit-learn} packages, and they implement the theory discussed in section 3.
+Prior to testing, all sets were loaded into lists, models were trained, validated, and the best performing models were chosen for testing.
+
+Since Extreme Learning Machines train quickly, it's efficient to create and validate multiple models while increasing nodes by some step size.
+The model is then trained and validated by first solving the $H\beta=T$, and the actual error is computed at different step sizes; the model that performs the best on the validation set is chosen for testing.
+Table~\ref{tab:elm-param} lists the parameters for all Extreme Learning Machine testing models.
+
+\begin{table}
+\caption{Extreme Learning Machine Parameters}
+\label{tab:elm-param}
+	\begin{tabular}{ll}
+	\toprule
+	Input Nodes			   & 25 \\
+	Hidden Nodes           & Dependent on Validation \\
+	Output Nodes		   & 1 \\
+	Activation Function    & $\tanh(x)=\dfrac{e^x - e^{-x}}{e^x + e^{-x}}$\\
+	$L_2$ Regularization Term & $\alpha=1$\\
+	\bottomrule
+	\end{tabular}
+\end{table}
+
+The Back-Propagation Neural Network uses the validation set to optimize the stopping condition.
+Stochastic gradient descent was used to train the model, which randomly selects a batch size of training examples to propagate through the network.
+At each propagation, the loss function and error on the validation set are computed.
+When the model ceases to converge relative to thresholds for both the loss function and validation set, the training process stops.
+The learning rate, momentum, and batch size were experimentally determined.
+Table~\ref{tab:bp-param} lists the parameters for all Back-Propagation testing models.
+
+\begin{table}
+\caption{Back-Propagation Parameters}
+\label{tab:bp-param}
+	\begin{tabular}{ll}
+	\toprule
+	Input Nodes			   & 25 \\
+	Hidden Nodes           & 40 \\
+	Output Nodes		   & 1 \\
+	Activation Function    & $\tanh(x)=\dfrac{e^x - e^{-x}}{e^x + e^{-x}}$\\
+	Learning Rate          & $\eta=0.001$\\
+	Momentum               & $\omega=0.9$\\
+	$L_2$ Regularization Term & $\alpha=0.001$\\
+	Batch Size             & $10$ \\
+	\bottomrule
+	\end{tabular}
+\end{table}
+
+For both Extreme Learning Machine and Back-Propagation models, $L_2$-regularization was used, and the constant was experimentally determined.
+Both models performed better with a hyperbolic tangent function when compared to the sigmoid function.
+
+% Results

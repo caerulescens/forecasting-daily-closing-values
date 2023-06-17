@@ -1,0 +1,98 @@
+%! Author = caerulescens
+%! Advisor = Mirek Mystkowski
+%! Date = 3/29/17
+%! Title = Artificial Neural Networks for Forecasting Daily Closing Values
+
+% Preamble
+\documentclass{ncjms}
+
+% Packages
+
+% Document
+\begin{document}
+    % Metadata
+    \title{Artificial Neural Networks for Forecasting Daily Closing Values}
+	\titlerunning{Forecasting with Neural Networks}
+	\author[A. Linzie]{Andrew Linzie}
+	\address[A. Linzie]{Department of Mathematical Sciences, P.O. Box 7261, Boiling Springs, NC 28017}
+	\email[A. Linzie]{alinzie@gardner-webb.edu}
+	\authorsrunning{A. Linzie}
+	\subjclass[2010]{ 60G25; 62M20}
+	\keywords{Artificial Neural Networks; Back-Propagation; Extreme Learning Machine; Forecasting; Stock Market.}
+	\date{March 31, 2017}
+
+    % Abstract
+    \begin{abstract}
+		Over the past decades, machine learning has become an essential area of research with relevant applications in classification and regression.
+		Artificial intelligence techniques can be used for statistical analysis of stock markets which is one example of a time series.
+		Within this research, Artificial Neural Network models were trained for the purpose of forecasting daily closing prices of five arbitrarily chosen stocks: Apple inc., Walmart, Bank of America Company, Ford Motor Company, and Coca-Cola.
+		The accuracy of Back-Propagation models optimized using stochastic gradient descent were compared with an algorithm originating from Nanyang Technical University called Extreme Learning Machines.
+		The results indicate that the Extreme Learning Machine model trained faster, classified the up and down of a stock more accurately, and had closer predictions when compared with the Back-Propagation Neural Network model.
+	\end{abstract}
+
+    % Title
+    \maketitle
+
+	% Introduction
+	\section{Introduction}\label{sec:introduction}
+	Seldom reward is absent from risk, and stock markets are a prime example.
+	Stock markets across the world are viewed as profitable and risky, which attracts companies to forecast these systems.
+	Floor trading has progressed towards high-frequency trading with supercomputers that exist within the exchange.
+	The computer's computational ability, length of the cable to the exchange, and more have been standardized in favor of no single company having an advantage with exception to algorithms.
+
+	Today, computers are delegated the buying and selling of stocks in the New York Stock exchange, and machine learning theory can be applied towards classification and level estimation.
+	Classification refers to the labeling of unseen data as a finite number of categories, while level estimation refers to predicting the price of a stock.
+	Artificial Neural Networks have been popular for forecasting noisy systems because of their universal approximation capability.
+	\citet{Cybenko:1989} was one of the first to prove the universal approximation theorem stating that a feed-forward network with a single hidden layer containing a finite number of neurons can approximate continuous functions on compact subsets of $R^n$.
+	Within this article, Artificial Neural Networks are applied for non-linear classification and level estimation of daily closing prices for blue chip stocks.
+
+	Within section 2, the Efficient Market and Random Walk Hypotheses are introduced, while different weight optimization methods for Artificial Neural Networks are compared.
+	The theory of Back-Propagation and Extreme Learning Machines is presented within section 3, and the application of those methods is discussed in section 4.
+	Section 5 contains the tabled experimental results, section 6 analyzes the results, and section 7 provides concluding remarks.
+
+	% Literature Review
+	\section{Literature Review}\label{sec:literature-review}
+	\input{literature-review}
+
+	% Weight Optimization
+	\section{Weight Optimization}\label{sec:weight-optimization}
+	\input{weight-optimization}
+
+	% Methods
+	\section{Methods}\label{sec:methods}
+	\input{methods}
+
+	% Results
+	\section{Results}\label{sec:results}
+	\input{results}
+
+	% Discussion
+	\section{Discussion}\label{sec:discussion}
+	\input{discussion}
+
+	% Conclusion
+	\section{Conclusion}\label{sec:conclusion}
+	The mathematical theories and methods of training neural networks for forecasting stock markets were presented within this article.
+	While the findings of others and this paper have very positive results on independent data, the academic playground mentality might not transfer to an actual financial market.
+	If authors modify their testing parameters to perform well on a testing set, then the model might not generalize well to the real world.
+	The testing parameters for all of the neural networks were held constant within this experiment with the goal of finding a general model for forecasting daily closing prices.
+	The analysis method used only represents half of a larger solution which would scrape new articles, tag parts of speech, rate the article's affect, and factor that new information into forecasts.
+
+	An Artificial Neural Network model represents an important component of a system for forecasting daily stock change.
+	Extreme Learning Machines and Back-Propagation with stochastic gradient descent were used and evaluated against each other.
+	Of the five different stocks both networks were tested on, the Extreme Learning Machine model had better results.
+	The Extreme Learning Machine model had lower training time, lower MSE, and higher classification success.
+	The hit or miss ratio provided within this paper implies that Extreme Learning Machines would perform well with forecasting the direction of change in a market.
+	Extreme Learning Machines are a relatively new method for optimizing neural networks.
+	Another important question to consider is whether Extreme Learning Machines are able to outperform deep learning algorithms.
+	More research should be published to further evaluate using Extreme Learning Machines for regression.
+
+	% Acknowledgments
+	\section*{Acknowledgments}
+	Special thanks to Dr. Miroslaw Mystkowski from the Department of Mathematical Sciences at Gardner-Webb University for his advising and support.
+
+	% References
+	\bibliographystyle{apa}
+	\bibliography{references}
+
+\end{document}
