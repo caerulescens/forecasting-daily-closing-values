@@ -2,7 +2,7 @@
 
 Undergraduate research submission to the [North Carolina Journal of Mathematics and Statistics](https://libjournal.uncg.edu/ncjms).
 
-<object data="main.pdf" width="1000" height="1000" type='application/pdf'></object>
+<object data="./main.pdf" width="1000" height="1000" type='application/pdf'></object>
 
 ## abstract
 
