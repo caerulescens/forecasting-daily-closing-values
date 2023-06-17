@@ -19,5 +19,5 @@ sudo apt install texlive-full
 ## usage
 
 ```shell
-xelatex main.tex
+pdflatex main.tex
 ```
