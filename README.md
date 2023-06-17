@@ -2,8 +2,8 @@
 
 Undergraduate research submission to the [North Carolina Journal of Mathematics and Statistics](https://libjournal.uncg.edu/ncjms).
 
-<object data="./main.pdf" width="1000" height="1000" type='application/pdf'>
-</object>
+<!-- mutool convert -o ./images/page%d.png -O resolution=360 -F png main.pdf 1-1 -->
+<img src="./images/page1.png" alt="preview" width="400"/>
 
 ## abstract
 
