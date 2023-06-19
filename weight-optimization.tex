@@ -36,14 +36,14 @@ The algorithm results in a fast training algorithm, and the needed number of hid
 For $N$ arbitrary distinct samples $(x_i, t_i) $ where $x_i = \left[ x_{i_{1}}, x_{i_{2}}, \dots, x_{i_{n}} \right] \in R^n$ and $t_i = \left[ t_{i_{1}}, t_{i_{2}}, \dots, t_{i_{m}} \right] \in R^m$, the outputs of an Extreme Learning Machines with $\tilde{N}$ hidden neurons and activation function $g(x)$ are mathematically modeled as
 
 \begin{equation}
-	\sum_{i=1}^{\tilde{N}} \beta_i g (w_i \cdot x_j + b_i)=o_j         j=1,2, \dots N\label{eq:equation3}
+	\sum_{i=1}^{\tilde{N}} \beta_i g (w_i \cdot x_j + b_i)=o_j,\ j=1,2, \dots N\label{eq:equation3}
 \end{equation}
 
 where $w_i = \left[ w_{i_{1}}, w_{i_{2}}, \dots, w_{i_{n}} \right]^T$ is the weight vector connecting the $i^{th}$ hidden neuron and the input neurons, $\beta_i=\left[ \beta_{i_{1}}, \beta_{i_{2}}, \dots, \beta_{i_{m}}\right]^T$ is the weight vector connecting the $i^{th}$ hidden neuron and the output neurons, and $b_i$ is the threshold of the $i^{th}$ hidden neuron.
 A single hidden-layer feed-forward neural network with $\tilde{N}$ hidden neurons and activation function $g(x)$ can approximate these $N$ samples with zero error, which means there exist $\beta_i$, $w_i$, and $b_i$ such that
 
 \begin{equation}
-	\sum_{ i = 1}^{\tilde{N}} \beta_i g (w_i \cdot x_j + b_i) = t_j, 	j=1,2, \dots N\label{eq:equation4}
+	\sum_{ i = 1}^{\tilde{N}} \beta_i g (w_i \cdot x_j + b_i) = t_j,\ j=1,2, \dots N\label{eq:equation4}
 \end{equation}
 
 The above $N$ equations are written compactly as $H \beta = T$.
